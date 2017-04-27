@@ -1,0 +1,36 @@
+{
+  "name": "slides-flatenning-js-modules",
+  "homepage": "https://github.com/paulodiovani/slides-flatenning-js-modules",
+  "authors": [
+    "Paulo Diovani <paulo@diovani.com>"
+  ],
+  "description": "Improving Js modules by using functional programming concepts.",
+  "main": [
+    "css/custom.css",
+    "img/*.{jpg,png,svg,gif}",
+    "js/pointer-fix.js",
+    "content.md",
+    "cover.jpg",
+    "index.html"
+  ],
+  "keywords": [
+    "javascript",
+    "functional",
+    "programming",
+    "promise",
+    "stream",
+    "composition"
+  ],
+  "license": "CC-BY-NC-SA",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "reveal.js": "^3.4.1"
+  }
+}
