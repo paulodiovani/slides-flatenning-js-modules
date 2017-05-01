@@ -30,11 +30,26 @@ and increase font size
 
 .reveal pre {
   width: auto;
-  font-size: .75em;
+  font-size: .7em;
 }
 
 .reveal pre code {
   max-height: none;
+}
+
+.reveal pre.half-pre {
+  float: left;
+  width: calc(50% - .5em);
+  margin-right: 1em;
+}
+
+.reveal pre.half-pre + pre {
+  float: right;
+  width: calc(50% - .5em);
+}
+
+.reveal pre.half-pre + pre + * {
+  clear: both;
 }
 
 /*
@@ -51,13 +66,6 @@ Image credits
   font-size: .8em !important;
   text-transform: uppercase;
   padding-right: .4em;
-}
-
-/*
-big text
- */
-.big {
-  font-size: 1.4em !important;
 }
 
 /*
