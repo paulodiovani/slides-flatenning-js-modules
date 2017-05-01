@@ -31,6 +31,8 @@
     "tests"
   ],
   "dependencies": {
-    "reveal.js": "^3.4.1"
+    "reveal.js": "^3.4.1",
+    "bigtext": "^0.1.8",
+    "jquery": "^3.2.1"
   }
 }

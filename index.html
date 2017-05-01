@@ -35,6 +35,8 @@
 
     <script src="./bower_components/reveal.js/lib/js/head.min.js"></script>
     <script src="./bower_components/reveal.js/js/reveal.js"></script>
+    <script src="./bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="./bower_components/bigtext/dist/bigtext.js"></script>
 
     <script>
       // More info https://github.com/hakimel/reveal.js#configuration
@@ -52,5 +54,11 @@
       });
     </script>
     <script type="text/javascript" src="js/pointer-fix.js"></script>
+    <script type="text/javascript">
+      Reveal.addEventListener( 'slidechanged', function( event ) {
+        // event.previousSlide, event.currentSlide, event.indexh, event.indexv
+        $('.big').bigtext();
+      } );
+    </script>
   </body>
 </html>
