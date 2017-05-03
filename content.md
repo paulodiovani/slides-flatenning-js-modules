@@ -29,23 +29,34 @@ Usuário GNU/Linux.
 [code-site]: http://codeminer42.com/
 
 ----
+<!-- .slide: id="not-another" class="bigtext" -->
 
-<div class="big">
-    <span>This is (not) another Talk</span>
-    <span>about Javascript</span>
-    <span>Functional Programming</span>
-</div>
+This is (not) another Talk
+
+about Javascript
+
+Functional Programming
 
 Note:
 A lot of people ou there _teach_
 functional javascript.
 
 ====
+<!-- .slide: data-background="img/slow-response.gif" data-background-size="contain" -->
 
-<div class="big">
-    <span>FP Jargon</span>
-    <p>[hemanth/functional-programming-jargon](https://github.com/hemanth/functional-programming-jargon)</p>
-</div>
+Note:
+But only a few examples how to use it?
+
+- it takes time to figure out
+- to see advantages
+- needs experience
+
+----
+<!-- .slide: id="fp-jargon" class="bigtext" -->
+
+FP Jargon
+
+[hemanth/functional-programming-jargon](https://github.com/hemanth/functional-programming-jargon)
 
 Note:
 get used to the jargon
@@ -137,12 +148,12 @@ Used to apply a function to a list of values and return another list with the re
      
     map([4, 8], square) // [16, 64]
 
-----
-<!-- .slide: data-background="img/slow-response.gif" data-background-size="contain" -->
+====
+<!-- .slide: id="how" class="bigtext" data-background="img/slow-response.gif" data-background-size="contain" -->
+
+but how can I
+
+USE IT?
 
 Note:
-Ok, now I know some concepts, but how to use it?
-
-- it takes time to figure out
-- to see advantages
-- needs experience
+Ok, I did it.

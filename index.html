@@ -57,7 +57,7 @@
     <script type="text/javascript">
       Reveal.addEventListener('slidechanged', function( event ) {
         // event.previousSlide, event.currentSlide, event.indexh, event.indexv
-        $('.big').bigtext();
+        $('.bigtext').bigtext({childSelector: '> p'});
       } );
     </script>
   </body>
