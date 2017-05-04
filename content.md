@@ -114,9 +114,8 @@ Impure function
     const greet = () => `Hi, ${window.name}`
     greet() // "Hi, Brianne"
 
-
-
 ====
+<!-- .slide: id="composition" -->
 
 ## Function Composition
 
@@ -131,6 +130,7 @@ The act of putting two functions together to form a third function where the out
     floorAndToString(121.212121) // '121'
 
 ====
+<!-- .slide: id="currying" -->
 
 ## Currying
 
@@ -153,15 +153,41 @@ Each time the function is called it only accepts one argument and returns a func
 
 Creates a new array with all elements that pass the test implemented by the provided function.
 
-    even = (n) => n % 2 === 0
+    const even = (n) => n % 2 === 0
     filter([1, 2, 3, 4, 5, 6]) // [2, 4, 6]
 
 ## Map
 
 Used to apply a function to a list of values and return another list with the results.
 
-    square = (n) => n * n
+    const square = (n) => n * n
     map([4, 8], square) // [16, 64]
+
+Note:
+Filter and map are widely used when
+writing functional code, specially while
+using composition
+
+====
+
+## Promises
+
+Used for asynchronous computations. A Promise represents a value which may be available now, or in the future, or never.
+
+    const promise = new Promise((resolve, reject) => {
+      setTimeout(() => resolve('ok'), 1000)
+      setTimeout(() => { throw new Error('not ok') }, 2000)
+    })
+
+    promise
+      .then(console.log) // prints 'ok' after 1 second
+      .catch(console.error) // prints 'Error: not ok' after 2 seconds
+
+Note:
+I decided to add Promises too,
+since many examples here use them
+and they work just like
+function composition
 
 ====
 <!-- .slide: id="how" class="bigtext" data-background="img/slow-response.gif" data-background-size="contain" -->
@@ -172,3 +198,209 @@ USE IT?
 
 Note:
 Ok, I did it.
+
+----
+<!-- .slide: id="refactor" class="bigtext" -->
+
+Refactoring code
+
+for better readability
+
+and better maintainability
+
+Note:
+In other words,
+Lets see how to use fp to
+(re)write better code
+
+====
+
+Example case: Reading files from a directory
+
+    const directory = process.argv[2]
+
+    fs.readdir(directory, (err, files) => {
+      if (err) console.error(err)
+      const jpgFiles = []
+
+      files.forEach(filename => {
+        if (filename.endsWith('.jpg')) {
+          jpgFiles.push(filename)
+        }
+      })
+
+      console.log('JPEG FILES:')
+      jpgFiles.forEach(filename => console.log(`\t ${filename}`))
+    })
+
+====
+<!-- .slide: id="use-promises" class="bigtext" -->
+
+## Step 1
+
+Using Promises to solve
+
+🔥 Callback Hell 🔥
+
+====
+
+Nothing much different... 🤔
+
+    const directory = process.argv[2]
+
+    fs.readdir(directory)
+      .then(files => {
+        const jpgFiles = []
+
+        files.forEach(filename => {
+          if (filename.endsWith('.jpg')) {
+            jpgFiles.push(filename)
+          }
+        })
+
+        console.log('JPEG FILES:')
+        jpgFiles.forEach(filename => console.log(`\t ${filename}`))
+      })
+      .catch(console.error)
+
+====
+<!-- .slide: id="promise-hell" class="bigtext" -->
+
+Using Functional Programming to solve
+
+🔥 ~~Callback~~ Promise Hell 🔥
+
+====
+
+Remember [Purity](#/purity)?
+
+    const directory = process.argv[2]
+
+    fs.readdir(directory)
+      .then(files => {
+        const jpgFiles = []
+
+        files.forEach(filename => {
+          if (filename.endsWith('.jpg')) {
+            jpgFiles.push(filename)
+          }
+        })
+
+        console.log('JPEG FILES:')
+        jpgFiles.forEach(filename => console.log(`\t ${filename}`))
+      })
+      .catch(console.error)
+<!-- .element: data-line="7, 11" data-line-offset="2" -->
+
+====
+
+Using `filter`
+
+    const directory = process.argv[2]
+
+    fs.readdir(directory)
+      .then((files) => {
+        const jpgFiles = files.filter(filename => filename.endsWith('.jpg'))
+
+        console.log('JPEG FILES:')
+        jpgFiles.forEach(filename => console.log(`\t ${filename}`))
+      })
+      .catch(console.error)
+<!-- .element: data-line="7" data-line-offset="2" -->
+
+====
+
+Does this look like [Composition](#/composition)?
+
+    const directory = process.argv[2]
+
+    fs.readdir(directory)
+      .then(files => files.filter(filename => filename.endsWith('.jpg')))
+      .then(files => files.map(filename => `\t ${filename}`))
+      .then(files => `JPEG FILES: \n${files.join('\n')}`)
+      .then(console.log)
+      .catch(console.error)
+
+====
+
+It's just like [Composition](#/composition).
+
+    const directory = process.argv[2]
+
+    const printFiles = R.compose(
+      console.log,
+      files => `JPEG FILES: \n${files.join('\n')}`,
+      files => files.map(filename => `\t ${filename}`)
+    )
+
+    fs.readdir(directory)
+      .then(files => files.filter(filename => filename.endsWith('.jpg')))
+      .then(printFiles)
+      .catch(console.error)
+<!-- .element: data-line="7-9, 14" data-line-offset="3" -->
+
+Note:
+Using Ramda.js library
+
+====
+
+Using [Curried](#/currying) functions
+
+    const directory = process.argv[2]
+
+    const printFiles = R.compose(
+      console.log,
+      R.join('\n'), // String → [a] → String
+      R.prepend('JPEG FILES:'), // a → [a] → [a]
+      R.map(filename => `\t ${filename}`) // Functor f => (a → b) → f a → f b
+    )
+
+    fs.readdir(directory)
+      .then(files => files.filter(filename => filename.endsWith('.jpg')))
+      .then(printFiles)
+      .catch(console.error)
+<!-- .element: data-line="7-10" data-line-offset="3" -->
+
+====
+
+Differences between `curried` and `not curried`
+
+    const printFiles = R.compose(
+      console.log,
+      R.join('\n'),
+      R.prepend('JPEG FILES:'),
+      R.map(fname => `\t ${fname}`)
+    )
+<!-- .element: class="half-pre" -->
+
+    const printFiles = R.compose(
+      console.log,
+      f => R.join('\n', f),
+      f => R.prepend('JPEG FILES:', f),
+      f => R.map(fname => `\t ${fname}`, f)
+    )
+
+====
+
+Differences between `compose` and `pipe`.
+
+    const printFiles = R.compose(
+      console.log,
+      R.join('\n'),
+      R.prepend('JPEG FILES:'),
+      R.map(filename => `\t ${filename}`)
+    )
+<!-- .element: class="half-pre" -->
+
+    const printFiles = R.pipe(
+      R.map(filename => `\t ${filename}`)
+      R.prepend('JPEG FILES:'),
+      R.join('\n'),
+      console.log,
+    )
+
+Note:
+`compose`: right-to-left function composition
+
+`pipe`: left-to-right function composition
+(just like promises)
