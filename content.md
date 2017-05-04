@@ -97,14 +97,23 @@ You can assign a lambda to a variable.
     const add1 = (a) => a + 1
 
 ====
+<!-- .slide: id="purity" -->
 
 ## Purity
 
 A function is pure if the return value is only determined by its input values, and does not produce side effects.
 
-    const greet = (name) => `Hi, ${name}`
+Pure function
 
+    const greet = (name) => `Hi, ${name}`
     greet('Brianne') // 'Hi, Brianne'
+
+Impure function
+
+    window.name = 'Brianne'
+    const greet = () => `Hi, ${window.name}`
+    greet() // "Hi, Brianne"
+
 
 
 ====
@@ -140,12 +149,18 @@ Each time the function is called it only accepts one argument and returns a func
 
 ====
 
+## Filter
+
+Creates a new array with all elements that pass the test implemented by the provided function.
+
+    even = (n) => n % 2 === 0
+    filter([1, 2, 3, 4, 5, 6]) // [2, 4, 6]
+
 ## Map
 
 Used to apply a function to a list of values and return another list with the results.
 
     square = (n) => n * n
-     
     map([4, 8], square) // [16, 64]
 
 ====
