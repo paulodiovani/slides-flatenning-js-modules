@@ -310,7 +310,7 @@ Using `filter`
 
 ====
 
-Does this look like [Composition](#/composition)?
+Improving and using `map`
 
     const directory = process.argv[2]
 
@@ -320,6 +320,13 @@ Does this look like [Composition](#/composition)?
       .then(files => `JPEG FILES: \n${files.join('\n')}`)
       .then(console.log)
       .catch(console.error)
+
+====
+<!-- .slide: id="like-composition" class="bigtext" data-background="img/does-he-looks-like-a-bitch.gif" -->
+
+Does it look
+
+like [Composition](#/composition)?
 
 ====
 
