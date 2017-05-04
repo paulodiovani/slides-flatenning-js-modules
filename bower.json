@@ -33,6 +33,7 @@
   "dependencies": {
     "reveal.js": "^3.4.1",
     "bigtext": "^0.1.8",
-    "jquery": "^3.2.1"
+    "jquery": "^3.2.1",
+    "prism": "^1.6.0"
   }
 }

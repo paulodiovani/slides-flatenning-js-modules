@@ -9,7 +9,8 @@
     <link rel="stylesheet" href="./bower_components/reveal.js/css/reveal.css">
     <link rel="stylesheet" href="./bower_components/reveal.js/css/theme/beige.css">
     <!-- Theme used for syntax highlighting of code -->
-    <link rel="stylesheet" href="./bower_components/reveal.js/lib/css/zenburn.css">
+    <link rel="stylesheet" href="./bower_components/prism/themes/prism-okaidia.css">
+    <link rel="stylesheet" href="./bower_components/prism/plugins/line-highlight/prism-line-highlight.css">
     <!-- Custom styles -->
     <link rel="stylesheet" href="css/custom.css">
 
@@ -22,7 +23,7 @@
       document.getElementsByTagName( 'head' )[0].appendChild( link );
     </script>
   </head>
-  <body>
+  <body class="language-javascript">
     <div class="reveal">
       <div class="slides">
         <section data-markdown="content.md"
@@ -49,7 +50,8 @@
           { src: './bower_components/reveal.js/plugin/markdown/marked.js' },
           { src: './bower_components/reveal.js/plugin/markdown/markdown.js' },
           { src: './bower_components/reveal.js/plugin/notes/notes.js', async: true },
-          { src: './bower_components/reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+          { src: './bower_components/prism/prism.js', async: true },
+          { src: './bower_components/prism/plugins/line-highlight/prism-line-highlight.min.js', async: true }
         ]
       });
     </script>
