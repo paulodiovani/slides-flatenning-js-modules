@@ -409,3 +409,43 @@ Note:
 
 `pipe`: left-to-right function composition
 (just like promises)
+
+----
+<!-- .slide: id="this-is-real" class="bigtext" -->
+
+some real life
+
+examples
+
+====
+
+Before refactoring
+
+    export function killedDragonsOnTheGame(frames) {
+      let dragonsKilled = []
+
+      frames.forEach(frame => {
+        const killedDragonsInTheFrame = frame.events.filter(event => {
+            return event.monsterType === 'DRAGON'
+        })
+        dragonsKilled = dragonsKilled.concat(killedDragonsInTheFrame)
+      })
+
+      return dragonsKilled
+    }
+
+by [@boniattirodrigo](http://twitter.com/@boniattirodrigo)
+
+====
+
+After refactoring
+
+    import { compose, curry, flatten, map } from 'ramda'
+
+    const flatMap = curry(compose(flatten, map))
+    const dragonKill = event => event.monsterType === 'DRAGON'
+    const killedDragonsOnTheGame = flatMap(frame => frame.events.filter(dragonKill))
+
+    export { killedDragonsOnTheGame }
+
+by [@boniattirodrigo](http://twitter.com/@boniattirodrigo)
