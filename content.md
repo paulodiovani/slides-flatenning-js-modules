@@ -202,11 +202,11 @@ Ok, I did it.
 ----
 <!-- .slide: id="refactor" class="bigtext" -->
 
-Refactoring code
+Code Refactoring
 
-for better readability
+for better Readability
 
-and better maintainability
+and better Maintainability
 
 Note:
 In other words,
@@ -235,8 +235,6 @@ Example case: Reading files from a directory
 
 ====
 <!-- .slide: id="use-promises" class="bigtext" -->
-
-## Step 1
 
 Using Promises to solve
 
