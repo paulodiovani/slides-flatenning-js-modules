@@ -535,6 +535,23 @@ ES2017
 
 ====
 
+The `async function` declaration defines an asynchronous function.
+
+- When an async function is called, it returns a Promise.
+    - When the async function returns a value, the Promise will be resolved with the returned value.
+    - When the async function throws an exception or some value, the Promise will be rejected with the thrown value.
+
+====
+
+The `await` operator is used to wait for a `Promise` returned by an `async function`.
+
+- The await expression causes async function execution to pause,
+    - to wait for the Promise's resolution,
+    - and to resume the async function execution when the value is resolved.
+    - It then returns the resolved value.
+
+====
+
 Replacing the [promise chain](#/promise-chain)
 
     const joinNewline = R.join('\n')
