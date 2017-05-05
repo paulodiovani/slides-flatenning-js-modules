@@ -11,6 +11,6 @@ const printFiles = R.compose(
 )
 
 fs.readdir(directory)
-  .then(files => files.filter(filename => filename.endsWith('.jpg')))
+  .then(R.filter(filename => filename.endsWith('.jpg')))
   .then(printFiles)
   .catch(console.error)

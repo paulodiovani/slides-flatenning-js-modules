@@ -384,10 +384,10 @@ Using [Curried](#/currying) functions
     )
 
     fs.readdir(directory)
-      .then(files => files.filter(filename => filename.endsWith('.jpg')))
+      .then(R.filter(filename => filename.endsWith('.jpg')))
       .then(printFiles)
       .catch(console.error)
-<!-- .element: data-line="7-10" data-line-offset="3" -->
+<!-- .element: data-line="7-10, 14" data-line-offset="3" -->
 
 ====
 
