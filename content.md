@@ -28,6 +28,15 @@ Usuário GNU/Linux.
 [code-logo]: img/codeminer42.png
 [code-site]: http://codeminer42.com/
 
+====
+<!-- .slide: data-background="linear-gradient(to bottom right, red 0%, black 100%)" style="color:#fff" -->
+
+![codeminer](img/codeminer.png) <!-- .element: class="no-border no-background" -->
+
+We're hiring
+
+paulodiovani@codeminer42.com
+
 ----
 <!-- .slide: id="not-another" class="bigtext" -->
 
