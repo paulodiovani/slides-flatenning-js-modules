@@ -418,6 +418,59 @@ some real life
 examples
 
 ====
+<!-- .slide: data-background="#3D2E50" style="color: #fff" -->
+
+![isapp](img/isapp.png) <!-- .element: class="no-border no-background" -->
+
+Close friends made closer
+
+[isapp.com](http://isapp.com/)
+
+Note:
+Current project
+
+====
+
+Before Refactoring
+
+    const fetch = (user) => {
+      return user.refresh({
+        withRelated: ['phone', 'friends', 'friendRequests.user', 'followings.friend']
+      }).then((freshUser) => {
+        return profileData(freshUser);
+      });
+    };
+
+    const publish = (db, profile) => {
+        return db.ref(`data/${profile.id}/profile`).set(profile);
+    };
+
+    const update = (user, db = Firebase.database()) => {
+      return fetch(user)
+        .then((profile) => publish(db, profile));
+    };
+
+====
+
+After refactoring
+
+    const publish = _.curry((db, [model, data]) => {
+      return db.ref(`data/${model.id}/profile`).set(data);
+    });
+
+    const update = (user, db = Firebase.database()) => {
+      return Promise.resolve([user, {}])
+        .then(mountUser)
+        .then(mountPhone)
+        .then(mountFriendships)
+        .then(mountFriendRequests)
+        .then(publish(db));
+    };
+
+Note:
+There is some missing methods in the example.
+
+====
 
 Before refactoring
 
