@@ -155,6 +155,19 @@ The process of converting a function that takes multiple arguments into a functi
 Note:
 Each time the function is called it only accepts one argument and returns a function that takes one argument until all arguments are passed.
 
+====
+
+## Arity
+
+The number of arguments a function takes.
+
+    const sum = (a, b) => a + b
+
+    const arity = sum.length
+    console.log(arity) // 2
+
+    // The arity of sum is 2
+
 
 ====
 
