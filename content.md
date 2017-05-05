@@ -256,6 +256,9 @@ Example case: Reading files from a directory
     })
 
 ====
+<!-- .slide: data-background="img/hadouken.png" -->
+
+====
 <!-- .slide: id="use-promises" class="bigtext" -->
 
 Using Promises to solve
@@ -600,6 +603,8 @@ Don't look fp as new paradigm to replace other
 - [Lodash](https://lodash.com/)
 - [MDN](https://developer.mozilla.org/en-US/)
 - [Ramda](http://ramdajs.com/)
+
+Gifs from [giphy](https://giphy.com/)
 
 ====
 
